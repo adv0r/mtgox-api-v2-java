@@ -30,7 +30,7 @@ MtGox trade = new MtGox(keys);
  See the  [example class](https://github.com/adv0r/mtgox-api-v2-java/blob/master/src/com/mtgox/examples/UsageExample.java) for a working demo. 
 
 ## Current price
- Print the **current price** of BTC in USD and EUR. This functions use the undocumented ticker_fast function.
+ Print the current price of BTC in USD and EUR. This functions use the undocumented ticker_fast function.
  ```java  
  System.out.println("Current price of 1 BTC : \n" +
                 "   "+trade.getLastPriceUSD()+" $\n"+
@@ -39,7 +39,7 @@ MtGox trade = new MtGox(keys);
 
 
 ## Current balance
- Print the **current balance** from your MtGox account in USD,EUR, and BTC
+ Print the current balance from your MtGox account in USD,EUR, and BTC
   ```java    
 System.out.println("Current account balance : \n" +
                 "   "+trade.getBalance()[0]+" BTC\n"+
@@ -48,27 +48,27 @@ System.out.println("Current account balance : \n" +
   ```
 
 ## Engine lag
- Print the **trading engine lag** as a String 
+ Print the trading engine lag as a String 
   ```java  
 System.out.println("Current Lag : "+ trade.getLag());
   ```
 
 ## Buy Bitcoins at market price
-**Buy** 0.1 BTC at market price
+Buy 0.1 BTC at market price
 ```java  
 String buyResult = trade.buyBTC(0.1);
 System.out.println(buyResult);
 ```  
 
 ## Sell Bitcoins at market price
-  **Sell** 0.1 BTC at market price
+  Sell 0.1 BTC at market price
  ```java  
 String sellResult = trade.sellBTC(0.1);
 System.out.println(sellResult);
  ```  
 
-## Withdraw and donate!
-**Withdraw 0.1 BTC** from your mtgox to a wallet address (mine ;)
+## Withdraw Bitcoins(and donate!)
+Withdraw 0.1 BTC from your mtgox to a wallet address (mine ;)
 ```java  
 trade.withdrawBTC(0.1, "1N7XxSvek1xVnWEBFGa5sHn1NhtDdMhkA7")
 ```  
