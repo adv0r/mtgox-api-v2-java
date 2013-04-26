@@ -1,4 +1,4 @@
-#Bitcoin trading using Mt.Gox API v2
+#Trading  Bitcoins using Mt.Gox API v2
 It is a simple java client that uses the new Mt.Gox API (V2).  The API are not well documented and this libraries are still unstable. I must say thank you to nitrous which is putting effort in documenting the v2 [here](https://bitbucket.org/nitrous/mtgox-api/overview).
 
 Disclaimer:  **This codebase is under development. Use it at your own risk** 
@@ -67,8 +67,8 @@ String sellResult = trade.sellBTC(0.1);
 System.out.println(sellResult);
  ```  
 
-## Withdraw Bitcoins(and donate!)
-Withdraw 0.1 BTC from your mtgox to a wallet address (mine ;)
+## Withdraw Bitcoins (and donate!)
+Withdraw 0.1 BTC from your mtgox to a wallet address (mine)
 ```java  
 trade.withdrawBTC(0.1, "1N7XxSvek1xVnWEBFGa5sHn1NhtDdMhkA7")
 ```  
