@@ -23,7 +23,7 @@ ApiKeys keys = new ApiKeys("your-secret-key", "your-api-key");
   Create the interface for trading on Mtgox, passing the apikeys object
   ```java
 MtGox trade = new MtGox(keys);
-//trade.setPrintHTTPResponse(true); //Uncomment this line if you want to read the JSON HTTP response
+//trade.setPrintHTTPResponse(true); //Uncomment this line to print the HTTP responses.
   ```
 
 #Usage
