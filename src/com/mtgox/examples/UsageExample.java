@@ -3,7 +3,6 @@ package com.mtgox.examples;
 
 import com.mtgox.api.ApiKeys;
 import com.mtgox.api.MtGox;
-import com.mtgox.api.TradeInterface;
 import com.mtgox.examples.utils.FileSystem;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
