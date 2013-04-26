@@ -1,11 +1,11 @@
-#What is  mtgox-api2-java
+#Bitcoin trading using Mt.Gox API v2
 It is a simple java client that uses the new Mt.Gox API (V2).  The API are not well documented and this libraries are still unstable. I must say thank you to nitrous which is putting effort in documenting the v2 [here](https://bitbucket.org/nitrous/mtgox-api/overview).
 
 Disclaimer:  **This codebase is under development. Use it at your own risk** 
 
 #Clone it
 
-Clone it with git (`git clone https://github.com/adv0r/mtgox-api-v2-java.git`) or [download the zipped archive](https://github.com/adv0r/botcoin/archive/master.zip)
+Clone it with git (`git clone https://github.com/adv0r/mtgox-api-v2-java.git`) or [download the zipped archive](https://github.com/adv0r/mtgox-api-v2-java/archive/master.zip)
 
 #Setup
 First setup the java [trustStore]() adding mtgox certificates. Basically you neet to tell to the JVM to trust mtgox's public certificate. I generated an encrypted keystore under res/ssl/mtgox.jks. 
@@ -22,17 +22,17 @@ ApiKeys keys = new ApiKeys("your-secret-key", "your-api-key");
 
   Create the interface for trading on Mtgox, passing the apikeys object
   ```java
-  MtGox trade = new MtGox(keys);
-   //trade.setPrintHTTPResponse(true); //Uncomment this line if you want to read the JSON HTTP response
+MtGox trade = new MtGox(keys);
+//trade.setPrintHTTPResponse(true); //Uncomment this line if you want to read the JSON HTTP response
   ```
 
 #Usage
- See the  [example file](https://github.com/adv0r/mtgox-api-v2-java/blob/master/src/com/mtgox/examples/UsageExample.java) for an usage demo. 
+ See the  [example class](https://github.com/adv0r/mtgox-api-v2-java/blob/master/src/com/mtgox/examples/UsageExample.java) for a working demo. 
 
 ## Current price
  Print the **current price** of BTC in USD and EUR. This functions use the undocumented ticker_fast function.
  ```java  
-  System.out.println("Current price of 1 BTC : \n" +
+ System.out.println("Current price of 1 BTC : \n" +
                 "   "+trade.getLastPriceUSD()+" $\n"+
                 "   "+trade.getLastPriceEUR()+" €");
  ```
@@ -41,7 +41,7 @@ ApiKeys keys = new ApiKeys("your-secret-key", "your-api-key");
 ## Current balance
  Print the **current balance** from your MtGox account in USD,EUR, and BTC
   ```java    
-  System.out.println("Current account balance : \n" +
+System.out.println("Current account balance : \n" +
                 "   "+trade.getBalance()[0]+" BTC\n"+
                 "   "+trade.getBalance()[1]+" $\n"+
                 "   "+trade.getBalance()[2]+" €");
@@ -50,21 +50,21 @@ ApiKeys keys = new ApiKeys("your-secret-key", "your-api-key");
 ## Engine lag
  Print the **trading engine lag** as a String 
   ```java  
-        System.out.println("Current Lag : "+ trade.getLag());
+System.out.println("Current Lag : "+ trade.getLag());
   ```
 
 ## Buy Bitcoins at market price
-  **Buy** 0.1 BTC at market price
-   ```java  
- String buyResult = trade.buyBTC(0.1);
- System.out.println(buyResult);
- ```  
+**Buy** 0.1 BTC at market price
+```java  
+String buyResult = trade.buyBTC(0.1);
+System.out.println(buyResult);
+```  
 
 ## Sell Bitcoins at market price
   **Sell** 0.1 BTC at market price
  ```java  
- String sellResult = trade.sellBTC(0.1);
- System.out.println(sellResult);
+String sellResult = trade.sellBTC(0.1);
+System.out.println(sellResult);
  ```  
 
 ## Withdraw and donate!
