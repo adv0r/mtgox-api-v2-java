@@ -56,7 +56,7 @@ private final String API_TICKER_EUR = "BTCEUR/MONEY/TICKER";
 private final String API_TICKER_FAST_USD = "BTCUSD/MONEY/TICKER_FAST"; 
 private final String API_TICKER_FAST_EUR = "BTCEUR/MONEY/TICKER_FAST"; 
 
-private final String API_WITHDRAW = "/MONEY/BITCOIN/SEND_SIMPLE";
+private final String API_WITHDRAW = "MONEY/BITCOIN/SEND_SIMPLE";
 private final String API_LAG = "MONEY/ORDER/LAG";
 private final String API_ADD_ORDER = "BTCUSD/MONEY/ORDER/ADD";
 
