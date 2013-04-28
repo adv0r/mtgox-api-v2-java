@@ -3,9 +3,11 @@ This is a simple java client that uses the new Mt.Gox API (V2).  The API are not
 
 Disclaimer:  **This codebase is under development. Use it at your own risk** 
 
-#Clone it
+#Get the sources
+Clone the repository with git (`git clone https://github.com/adv0r/mtgox-api-v2-java.git`) or [download the zipped archive](https://github.com/adv0r/mtgox-api-v2-java/archive/master.zip)
 
-Clone it with git (`git clone https://github.com/adv0r/mtgox-api-v2-java.git`) or [download the zipped archive](https://github.com/adv0r/mtgox-api-v2-java/archive/master.zip)
+#Sample project
+You can play around by opening your IDE (Netbeans, Eclipse, Sublime) and importing the [zipped sample project](https://github.com/adv0r/mtgox-api-v2-java/raw/master/dist/mtgox-apiv2-sampleproject.zip) (JRE >7)
 
 #Setup
 First setup the java [trustStore]() adding mtgox certificates. Basically you neet to tell to the JVM to trust mtgox's public certificate. I generated an encrypted keystore under res/ssl/mtgox.jks. 
