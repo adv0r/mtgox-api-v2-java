@@ -242,17 +242,44 @@ private boolean printHttpResponse ;
             JSONObject walletsJson = (JSONObject)dataJson.get("Wallets"); 
             
             JSONObject BTCwalletJson = (JSONObject)((JSONObject)walletsJson.get("BTC")).get("Balance");  
-            JSONObject USDwalletJson = (JSONObject)((JSONObject)walletsJson.get("USD")).get("Balance");   
-            JSONObject EURwalletJson = (JSONObject)((JSONObject)walletsJson.get("EUR")).get("Balance");   
-            
+        
             String BTCBalance = (String)BTCwalletJson.get("value");
-            String USDBalance = (String)USDwalletJson.get("value");
-            String EURBalance = (String)EURwalletJson.get("value");
+                      
+            boolean hasDollars = true;
+            boolean hasEuros = true;
+            JSONObject USDwalletJson,EURwalletJson;
+            String USDBalance ="" , EURBalance ="";
 
+            try{
+                 USDwalletJson = (JSONObject)((JSONObject)walletsJson.get("USD")).get("Balance"); 
+                 USDBalance = (String)USDwalletJson.get("value");
+            }
+            catch (Exception e)
+            {
+                hasDollars = false;
+            }
+            
+            try{
+                 EURwalletJson = (JSONObject)((JSONObject)walletsJson.get("EUR")).get("Balance");
+                 EURBalance = (String)EURwalletJson.get("value");
+            }
+            catch (Exception e)
+            {
+                hasEuros = false;  
+            }
             
             balanceArray[0] = Double.parseDouble(BTCBalance); //BTC
-            balanceArray[1] = Double.parseDouble(USDBalance); ; //USD
-            balanceArray[2] = Double.parseDouble(EURBalance); ; //EUR
+            
+            if(hasDollars)
+                balanceArray[1] = Double.parseDouble(USDBalance); //USD
+            else 
+                balanceArray[1] = -1; //Account does not have USD wallet
+
+            if(hasEuros)
+                balanceArray[2] = Double.parseDouble(EURBalance); //EUR
+            else 
+                balanceArray[2] = -1; //Account does not have EUR wallet
+
             
          } catch (ParseException ex) {
             Logger.getLogger(MtGox.class.getName()).log(Level.SEVERE, null, ex);
