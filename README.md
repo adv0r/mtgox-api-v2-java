@@ -10,7 +10,7 @@ Clone the repository with git (`git clone https://github.com/adv0r/mtgox-api-v2-
 You can play around by opening your IDE (Netbeans, Eclipse, Sublime) and importing the [zipped sample project](https://github.com/adv0r/mtgox-api-v2-java/raw/master/dist/mtgox-apiv2-sampleproject.zip) (JRE >7)
 
 #Setup
-First setup the java [trustStore]() adding mtgox certificates. Basically you neet to tell to the JVM to trust mtgox's public certificate. I generated an encrypted keystore under res/ssl/mtgox.jks. 
+First setup the java trustStore adding mtgox certificates. Basically you neet to tell to the JVM to trust mtgox's public certificate. I generated an encrypted keystore under res/ssl/mtgox.jks. 
 
 ```java
 System.setProperty("javax.net.ssl.trustStore","res/ssl/mtgox.jks");
