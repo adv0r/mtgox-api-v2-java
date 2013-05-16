@@ -49,10 +49,6 @@ private final String API_BASE_URL = "https://data.mtgox.com/api/2/";
 
 //Paths
 private final String API_GET_INFO = "MONEY/INFO";
-private final String API_TICKER_USD = "BTCUSD/MONEY/TICKER";
-private final String API_TICKER_EUR = "BTCEUR/MONEY/TICKER";
-private final String API_TICKER_FAST_USD = "BTCUSD/MONEY/TICKER_FAST"; 
-private final String API_TICKER_FAST_EUR = "BTCEUR/MONEY/TICKER_FAST"; 
 
 private final String API_WITHDRAW = "MONEY/BITCOIN/SEND_SIMPLE";
 private final String API_LAG = "MONEY/ORDER/LAG";
@@ -316,20 +312,8 @@ private boolean printHttpResponse ;
 
     public double getLastPrice(Currency cur) {    
   
-        String urlPath="";
-        long divideFactor;
-        switch (cur) {
-        case USD:
-            urlPath = API_TICKER_FAST_USD ;
-            divideFactor = devisionFactors.get(cur);
-            break;
-        case EUR:
-            urlPath = API_TICKER_FAST_EUR ; //TODO When they will fix it change to ticker fast!! It is not working properly today 17Apr2013
-            divideFactor = devisionFactors.get(cur);
-            break;
-        default:
-            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+cur.toString()+ " - Not supported yet.");
-        }
+        String urlPath=getTickerPath(cur, true);
+        long divideFactor = devisionFactors.get(cur);
         HashMap<String, String> query_args = new HashMap<>();
         
         /*Params :
@@ -488,5 +472,9 @@ private boolean printHttpResponse ;
                         }
                         return answer;        
         }
+    }
+    
+    private String getTickerPath(Currency cur, boolean fast) {
+    	return "BTC" + cur.toString() +"/MONEY/TICKER" + (fast ? "_FAST" : "");
     }
 }
