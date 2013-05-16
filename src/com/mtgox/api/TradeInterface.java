@@ -4,6 +4,8 @@
  */
 package com.mtgox.api;
 
+import com.mtgox.api.MtGox.Currency;
+
 /**
  *
  * @author advanced
@@ -25,16 +27,10 @@ public interface TradeInterface{
     
    
     /**
-    * Returns an array with the last price in USD and EUR. 
-    * @return      a double value with the current price of 1 BTC in USD
+    * Returns the current price of 1 BTC in given currency. 
+    * @return      a double value with the current price of 1 BTC in the Currency cur
     */
-    public double getLastPriceUSD();
-    
-    /**
-    * Returns an array with the last price in USD and EUR. 
-    * @return      a double value with the current price of 1 BTC in EUR
-    */
-    public double getLastPriceEUR();
+    public double getLastPrice(Currency cur);
     
    
     /**

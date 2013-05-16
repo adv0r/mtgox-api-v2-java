@@ -3,7 +3,8 @@ package com.mtgox.examples;
 
 import com.mtgox.api.ApiKeys;
 import com.mtgox.api.MtGox;
-import com.mtgox.examples.utils.FileSystem;
+import com.mtgox.api.MtGox.Currency;
+import com.mtgox.examples.utils.Utils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -56,8 +57,8 @@ public class UsageExample {
         
         
         //Get the current price of a bitcoin using the ticker fast-------------------------------------
-        double lastPriceUSD = trade.getLastPriceUSD();
-        double lastPriceEUR = trade.getLastPriceEUR();
+        double lastPriceUSD = trade.getLastPrice(Currency.USD);
+        double lastPriceEUR = trade.getLastPrice(Currency.EUR);
         System.out.println("Current price of 1 BTC : \n" +
                 "   "+lastPriceUSD+" $\n"+
                 "   "+lastPriceEUR+" €");
@@ -96,7 +97,7 @@ public class UsageExample {
         //see https://code.google.com/p/json-simple/wiki/DecodingExamples
         JSONParser parser=new JSONParser();
         ApiKeys apiKeys = null;
-        String apiStr = FileSystem.readFromFile(pathToJsonFile);
+        String apiStr = Utils.readFromFile(pathToJsonFile);
         try {
             JSONObject obj2=(JSONObject)(parser.parse(apiStr));
             apiKeys= new ApiKeys((String)obj2.get("mtgox_secret_key"), (String)obj2.get("mtgox_api_key"));
