@@ -248,6 +248,7 @@ private boolean printHttpResponse ;
          *   "result": "success"
          * }
          */
+        
          JSONParser parser=new JSONParser();
          try {
             JSONObject httpAnswerJson=(JSONObject)(parser.parse(queryResult));
@@ -415,7 +416,6 @@ private boolean printHttpResponse ;
 
                             // build URL
                             URL queryUrl = new URL(API_BASE_URL + path); 
-
                             // create and setup a HTTP connection
                             connection = (HttpsURLConnection)queryUrl.openConnection();
 
@@ -474,7 +474,14 @@ private boolean printHttpResponse ;
         }
     }
     
+    /**
+    *
+    * returns the string used to get the Ticker
+    * @return the string you're searching for;)
+    */
     private String getTickerPath(Currency cur, boolean fast) {
     	return "BTC" + cur.toString() +"/MONEY/TICKER" + (fast ? "_FAST" : "");
     }
+    
+    
 }
