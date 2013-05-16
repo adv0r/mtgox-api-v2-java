@@ -35,17 +35,13 @@ import org.json.simple.parser.ParseException;
  */
 public class MtGox implements TradeInterface{
 	
-public enum Currency {USD, EUR};
+public enum Currency {BTC, USD, GBP, EUR, JPY, AUD, CAD, CHF, CNY, DKK, HKD, PLN, RUB, SEK, SGD, THB};
     
 private ApiKeys keys;
 
 
-private final int USD_DIVIDE_FACTOR = 100000;  //In order to use the intvalue provided by the api
-private final int EUR_DIVIDE_FACTOR = 100000;  //you should divide the intvalue by this number. Or vice versa
-private final int BTC_DIVIDE_FACTOR = 100000000;
-private final double USD_MULTIPLY_FACTOR = 0.00001; 
-private final double EUR_MULTIPLY_FACTOR = 0.00001;  
-private final double BTC_MULTIPLY_FACTOR = 0.00000001;
+private final HashMap<Currency, Integer> devisionFactors;
+
 
 private final double MIN_ORDER = 0.01; //BTC
 
@@ -70,6 +66,25 @@ private boolean printHttpResponse ;
   public MtGox(ApiKeys keys) {
         this.keys = keys;
         printHttpResponse = false;
+        // set division Factors
+        devisionFactors = new HashMap<Currency, Integer>();
+        devisionFactors.put(Currency.BTC, 100000000);
+        devisionFactors.put(Currency.USD, 100000);
+        devisionFactors.put(Currency.GBP, 100000);
+        devisionFactors.put(Currency.EUR, 100000);
+        devisionFactors.put(Currency.JPY, 1000);
+        devisionFactors.put(Currency.AUD, 100000);
+        devisionFactors.put(Currency.CAD, 100000);
+        devisionFactors.put(Currency.CHF, 100000);
+        devisionFactors.put(Currency.CNY, 100000);
+        devisionFactors.put(Currency.DKK, 100000);
+        devisionFactors.put(Currency.HKD, 100000);
+        devisionFactors.put(Currency.PLN, 100000);
+        devisionFactors.put(Currency.RUB, 100000);
+        devisionFactors.put(Currency.SEK, 1000);
+        devisionFactors.put(Currency.SGD, 100000);
+        devisionFactors.put(Currency.THB, 100000);
+        
     }
   
   public void setPrintHTTPResponse(boolean resp)
@@ -111,7 +126,7 @@ private boolean printHttpResponse ;
          * no_instant : Setting this parameter to 1 will prevent transaction from being processed internally, and force usage of the bitcoin blockchain even if receipient is also on the system
          * green : Setting this parameter to 1 will cause the TX to use MtGox’s green address
          */
-        query_args.put("amount_int", Long.toString(Math.round(amount*BTC_DIVIDE_FACTOR)));
+        query_args.put("amount_int", Long.toString(Math.round(amount*devisionFactors.get(Currency.BTC))));
         query_args.put("address",dest_address);
         String queryResult = query(urlPath, query_args);
         
@@ -135,12 +150,12 @@ private boolean printHttpResponse ;
 
     @Override
     public String sellBTC(double amount) {
-       return placeOrder("sell", Math.round(amount*BTC_DIVIDE_FACTOR));
+       return placeOrder("sell", Math.round(amount*devisionFactors.get(Currency.BTC)));
     }
 
     @Override
     public String buyBTC(double amount) {
-       return placeOrder("buy", Math.round(amount*BTC_DIVIDE_FACTOR));
+       return placeOrder("buy", Math.round(amount*devisionFactors.get(Currency.BTC)));
     }
     
      public String placeOrder(String type, long amount_int) {
@@ -299,21 +314,21 @@ private boolean printHttpResponse ;
     }
     
 
-    public double getLastPrice(Currency cur) {    
+    public double getLastPrice(Currency usd) {    
   
         String urlPath="";
         long divideFactor;
-        switch (cur) {
+        switch (usd) {
         case USD:
             urlPath = API_TICKER_FAST_USD ;
-            divideFactor = USD_DIVIDE_FACTOR;
+            divideFactor = devisionFactors.get(usd);
             break;
         case EUR:
             urlPath = API_TICKER_FAST_EUR ; //TODO When they will fix it change to ticker fast!! It is not working properly today 17Apr2013
-            divideFactor = EUR_DIVIDE_FACTOR;
+            divideFactor = devisionFactors.get(usd);
             break;
         default:
-            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+cur.toString()+ " - Not supported yet.");
+            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+usd.toString()+ " - Not supported yet.");
         }
         HashMap<String, String> query_args = new HashMap<>();
         
