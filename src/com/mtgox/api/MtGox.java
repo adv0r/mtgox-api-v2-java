@@ -314,21 +314,21 @@ private boolean printHttpResponse ;
     }
     
 
-    public double getLastPrice(Currency usd) {    
+    public double getLastPrice(Currency cur) {    
   
         String urlPath="";
         long divideFactor;
-        switch (usd) {
+        switch (cur) {
         case USD:
             urlPath = API_TICKER_FAST_USD ;
-            divideFactor = devisionFactors.get(usd);
+            divideFactor = devisionFactors.get(cur);
             break;
         case EUR:
             urlPath = API_TICKER_FAST_EUR ; //TODO When they will fix it change to ticker fast!! It is not working properly today 17Apr2013
-            divideFactor = devisionFactors.get(usd);
+            divideFactor = devisionFactors.get(cur);
             break;
         default:
-            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+usd.toString()+ " - Not supported yet.");
+            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+cur.toString()+ " - Not supported yet.");
         }
         HashMap<String, String> query_args = new HashMap<>();
         
