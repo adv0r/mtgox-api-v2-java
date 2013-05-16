@@ -34,6 +34,8 @@ import org.json.simple.parser.ParseException;
  * unofficial documentation by nitrous https://bitbucket.org/nitrous/mtgox-api/overview
  */
 public class MtGox implements TradeInterface{
+	
+public enum Currency {USD, EUR};
     
 private ApiKeys keys;
 
@@ -287,16 +289,6 @@ private boolean printHttpResponse ;
         
         return balanceArray;
     }
-    
-    @Override
-    public double getLastPriceUSD() {
-        return getLastPrice("USD");
-    }
-
-    @Override
-    public double getLastPriceEUR() {
-        return getLastPrice("EUR");
-    }
 
     
     public String query(String path, HashMap<String, String> args) {
@@ -307,22 +299,22 @@ private boolean printHttpResponse ;
     }
     
 
-    public double getLastPrice(String currency) {    
+    public double getLastPrice(Currency cur) {    
   
         String urlPath="";
         long divideFactor;
-        switch (currency) {
-        case "USD":
+        switch (cur) {
+        case USD:
             urlPath = API_TICKER_FAST_USD ;
             divideFactor = USD_DIVIDE_FACTOR;
             break;
-        case "EUR":
+        case EUR:
             urlPath = API_TICKER_FAST_EUR ; //TODO When they will fix it change to ticker fast!! It is not working properly today 17Apr2013
             divideFactor = EUR_DIVIDE_FACTOR;
             break;
         default:
-            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+currency+ " - Not supported yet.");
-    }
+            throw new UnsupportedOperationException("MTGOX API ERROR: Currency - "+cur.toString()+ " - Not supported yet.");
+        }
         HashMap<String, String> query_args = new HashMap<>();
         
         /*Params :

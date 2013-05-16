@@ -3,6 +3,7 @@ package com.mtgox.examples;
 
 import com.mtgox.api.ApiKeys;
 import com.mtgox.api.MtGox;
+import com.mtgox.api.MtGox.Currency;
 import com.mtgox.examples.utils.Utils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -56,8 +57,8 @@ public class UsageExample {
         
         
         //Get the current price of a bitcoin using the ticker fast-------------------------------------
-        double lastPriceUSD = trade.getLastPriceUSD();
-        double lastPriceEUR = trade.getLastPriceEUR();
+        double lastPriceUSD = trade.getLastPrice(Currency.USD);
+        double lastPriceEUR = trade.getLastPrice(Currency.EUR);
         System.out.println("Current price of 1 BTC : \n" +
                 "   "+lastPriceUSD+" $\n"+
                 "   "+lastPriceEUR+" €");
