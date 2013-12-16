@@ -80,3 +80,7 @@ I'll be more than happy if you decide to test the above instruction ;) Indeed, b
 
 Let me know if you like it and you find it useful. Fork it, clone it, talk to me 
 If you want to support open source projects like this, support me donating to  **1N7XxSvek1xVnWEBFGa5sHn1NhtDdMhkA7.**
+
+#Contribute and get paid
+http://tip4commit.com/projects/142
+[![tip for next commit](http://tip4commit.com/projects/142.svg)](http://tip4commit.com/projects/142)
