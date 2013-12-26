@@ -70,11 +70,11 @@ System.out.println(sellResult);
  ```  
 
 ## Withdraw Bitcoins (and donate!)
-Withdraw 0.1 BTC from your mtgox to a wallet address (mine)
+Withdraw 0.01 BTC from your mtgox to a wallet address (mine)
 ```java  
-trade.withdrawBTC(0.1, "1N7XxSvek1xVnWEBFGa5sHn1NhtDdMhkA7")
+trade.withdrawBTC(0.01, "1N7XxSvek1xVnWEBFGa5sHn1NhtDdMhkA7")
 ```  
-I'll be more than happy if you decide to test the above instruction ;) Indeed, by executing the code above you will donate 0.1 BTC to support my effort in completing this trading API. Feel free to integrate this library into your project. If you get rich (or if you design some trading algorithm to get rich) , let me know ;).
+I'll be more than happy if you decide to test the above instruction ;) Indeed, by executing the code above you will donate 0.01 BTC to support my effort in completing this trading API. Feel free to integrate this library into your project. If you get rich (or if you design some trading algorithm to get rich) , let me know ;).
 
 #Love it
 
